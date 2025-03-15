@@ -1,17 +1,14 @@
 package main
 
 import (
-	// "database/sql"
-	// "fmt"
 	"html/template"
 	"io"
+	"reflect"
+	"strings"
+	"web-terminal/apps"
 
-	// "log"
 	"net/http"
-	// "strconv"
-	// "strings"
 	"path"
-	// _ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
@@ -60,16 +57,27 @@ func commandExecute(w http.ResponseWriter, r *http.Request) {
 
 	commandText := string(commandTextBytes)
 
-	if commandText == "errtest" {
-		http.Error(w, "Error test successfully", http.StatusExpectationFailed)
-		return
+	words := strings.Split(commandText, " ")
+
+	args := make([]reflect.Value, len(words)-1)
+
+	for i, _ := range args {
+		args[i] = reflect.ValueOf(words[i+1])
 	}
 
-	answer := "YAY YOU GOT THE COMMAND: " + commandText
+	method := findService(words[0], &apps.Apps{})
 
-	w.Write([]byte(answer))
+	if method.IsValid() {
+		result := method.Call(args)
+		w.Write([]byte(result[0].String()))
+		return
+	} else {
+		http.Error(w, "No Command "+words[0]+" found", http.StatusExpectationFailed)
+		return
+	}
 }
 
-// func findService(serviceName string) {
-
-// }
+func findService(serviceName string, appsRepo *apps.Apps) reflect.Value {
+	method := reflect.ValueOf(appsRepo).MethodByName(serviceName)
+	return method
+}
