@@ -1,7 +1,7 @@
 *{
     /* border: 1px solid red; */
-    
-}
+    box-sizing: border-box;
+}   
 body{
     padding:10px 10px 10px;
     width: 100svw;
