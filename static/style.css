@@ -1,0 +1,68 @@
+*{
+    /* border: 1px solid red; */
+    
+}
+body{
+    padding:10px 10px 10px;
+    width: 100svw;
+    height: 100svh;
+    background-color: black;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+}
+#history{
+    width: 100%;
+}
+#command-input-box-label{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+#caret-box{
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    background-color: white;
+    animation: blink 1s linear infinite;
+}
+
+#command-input-box-label span{
+    flex: 0 0 auto;
+    display: block;
+}
+#command-input-box{
+    flex: 1;
+    align-self: stretch;
+    /* padding: 5px; */
+    /* background: lightgray; */
+    overflow: auto;
+    color: transparent;
+    text-shadow: 0 0 0 white;
+}
+
+#command-input-box:focus{
+    outline: none;
+}
+
+@keyframes blink {
+    0%{
+        opacity: 0;
+    }
+    49%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.red{
+    color:brown;
+}

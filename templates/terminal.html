@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Web Terminal</title>
+        <meta name="description" content="A web-based terminal interface with go">
+        <meta name="author" content="github.com/P4elkaB35t">
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    </head>
+    <body style="color: white">
+        <div id="caret-box"></div> 
+        <div id="history">
+
+        </div>
+        <div id="command-input-box-label"><span><s>WS</s>:</span>
+        <p id="command-input-box" contenteditable="true" onblur="this.focus()" autofocus></p></div>
+        <script src="/static/script.js"></script>
+    </body>
+</html>
